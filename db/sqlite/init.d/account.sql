@@ -1,0 +1,1 @@
+create table account(id text, email text, password text);
