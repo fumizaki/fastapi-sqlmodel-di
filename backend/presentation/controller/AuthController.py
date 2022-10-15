@@ -18,9 +18,10 @@ class AuthController(AbsController):
 
 
         @self.router.post(EntryPoint.SIGN_UP)
-        async def sign_up(form_object: SignUpFormObject, sign_up_usecase: SignUpUseCase = Depends(DI.sign_up)):
+        async def sign_up(form_object: SignUpFormObject, usecase: SignUpUseCase = Depends(DI.sign_up)):
             try:
-                result = sign_up_usecase.sign_up_exec(form_object)
+                response = usecase.sign_up_exec(form_object)
+                return response
 
             except:
                 pass

@@ -22,3 +22,7 @@ class SignUpTransactionImpl(SignUpTransaction):
 
     def rollback(self):
         self.session.rollback()
+
+
+    def close(self):
+        self.session.close()

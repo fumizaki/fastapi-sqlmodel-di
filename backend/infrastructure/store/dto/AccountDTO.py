@@ -5,7 +5,7 @@ from sqlmodel import Field, SQLModel
 # domain
 from domain.entity.Account import Account
 # presentation
-from presentation.schema.view_model.SignUpViewModel import SignUpViewModel
+from presentation.schema.view_model.GetAccountViewModel import GetAccountViewModel
 
 
 class AccountDTO(SQLModel, table=True):
@@ -26,7 +26,7 @@ class AccountDTO(SQLModel, table=True):
 
 
     def set(self):
-        return SignUpViewModel(
+        return GetAccountViewModel(
             id = self.id
             )
 

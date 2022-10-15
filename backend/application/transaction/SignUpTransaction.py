@@ -20,3 +20,8 @@ class SignUpTransaction(ABC):
     @abstractmethod
     def rollback(self):
         raise NotImplementedError
+
+
+    @abstractmethod
+    def close(self):
+        raise NotImplementedError

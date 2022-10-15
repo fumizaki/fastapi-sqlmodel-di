@@ -6,20 +6,24 @@ from domain.repository.AccountRepository import AccountRepository
 from domain.entity.Account import Account
 # infrastructure
 from infrastructure.store.dto.AccountDTO import AccountDTO
+from infrastructure.utility.Logging import Logging
 
 class AccountRepositoryImpl(AccountRepository):
 
     def __init__(self, session: Session):
         self.session = session
+        self.logger = Logging.get(module=self.__class__.__name__)
 
 
     def create(self, account: Account):
         try:
+            self.logger.info(account)
             dto = AccountDTO.map(account)
             self.session.add(dto)
             self.session.flush()
 
-        except:
+        except Exception as e:
+            self.logger.error(e)
             raise
 
 
@@ -30,7 +34,7 @@ class AccountRepositoryImpl(AccountRepository):
             return result
 
         except Exception as e:
-            print(e)
+            self.logger.error(e)
             raise
 
 
@@ -41,5 +45,5 @@ class AccountRepositoryImpl(AccountRepository):
             return result
 
         except Exception as e:
-            print(e)
+            self.logger.error(e)
             raise
